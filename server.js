@@ -114,7 +114,7 @@ app.post('/api/vector-collection/add', async (req, res) => {
 app.post('/api/vector-collection/query', async (req, res) => {
     try {
       const { prompt, nResults = 10 } = req.body;
-      console.log(req)
+      //console.log(req)
       
       if (!prompt) {
         return res.status(400).json({ error: 'Prompt is required' });
@@ -124,7 +124,7 @@ app.post('/api/vector-collection/query', async (req, res) => {
         prompt: prompt,
         n_results: nResults
       });
-  
+      //console.log(response.data)
       res.json(response.data);
     } catch (error) {
       console.error('Error querying vector collection:', error.response?.data || error.message);
