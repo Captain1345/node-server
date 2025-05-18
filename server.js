@@ -89,7 +89,6 @@ app.post('/api/convert-pdfs-chunks', upload.array('files', 10), async (req, res)
 app.post('/api/vector-collection/add', async (req, res) => {
     try {
       const { chunks, fileName } = req.body;
-      console.log(chunks, fileName)
       if (!chunks || !fileName) {
         return res.status(400).json({ error: 'Both chunks and fileName are required' });
       }
@@ -113,7 +112,7 @@ app.post('/api/vector-collection/add', async (req, res) => {
   // Add this route to your existing server
 app.post('/api/vector-collection/query', async (req, res) => {
     try {
-      const { prompt, nResults = 10 } = req.body;
+      const { prompt, nResults = 15 } = req.body;
       //console.log(req)
       
       if (!prompt) {
