@@ -112,16 +112,17 @@ app.post('/api/vector-collection/add', async (req, res) => {
   // Add this route to your existing server
 app.post('/api/vector-collection/query', async (req, res) => {
     try {
-      const { prompt, nResults = 15 } = req.body;
-      //console.log(req)
+      const { conversationHistory = [], lastMessageSent, nResults = 15 } = req.body;
+      console.log(req.body)
       
-      if (!prompt) {
+      if (!lastMessageSent) {
         return res.status(400).json({ error: 'Prompt is required' });
       }
   
       const response = await axios.post(`${PDF_SERVICE_URL}/query-collection`, {
-        prompt: prompt,
-        n_results: nResults
+        conversationHistory,
+        lastMessageSent,
+        nResults: nResults
       });
       //console.log(response.data)
       res.json(response.data);
